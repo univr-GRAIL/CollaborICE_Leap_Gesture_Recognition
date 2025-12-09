@@ -1,6 +1,11 @@
 # Leap Motion Gesture Recognition
+The CollaborICE project creates an open software platform for collaborative production systems where human operators and robots interact. Its goal is to model, collect, and manage data for human actions and machine states to build resilient, sustainable factories. It uses the ICE Lab's existing infrastructure, including a production line, DIH, and digital twin components. This involves modeling human behavior across micro (gestures), meso (pose), and macro (trajectory) scales. Ultimately, the project aims to integrate real-time human action recognition with SysML and Digital Twin models.
 
-A brief description of the project, focusing on **real-time hand gesture recognition** using Leap Motion sensors and the **Robot Operating System (ROS)** framework. The system processes 3D joint data from one or two Leap Motion devices to recognize various hand gestures.
+The program focuses on micro-scale human behavior modeling by continuously recognizing 3D hand gestures in real-time.
+It uses two Leap Motion 2 sensors configured to eliminate occlusion and ensure robust skeletal tracking.
+A custom ROS2 fusion node intelligently combines the two sensor streams based on confidence levels.
+The core challenge is achieving high-precision classification (SVM, LDA, Bayesian) with low latency ($<12ms$) for natural HMI.
+This system enables operators to use simple gestures as commands for machinery in the collaborative robot cell.
 
 ---
 

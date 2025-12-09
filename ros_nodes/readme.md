@@ -1,6 +1,8 @@
 ## Execution and ROS Nodes
 
-This section details the steps required to set up the Leap Motion device in WSL, build the ROS workspace, launch the applications, and monitor the data topics.
+This section details the steps required to set up the Leap Motion device in WSL, build the ROS workspace, launch the applications, and monitor the data topics. 
+
+**leap_motion_screen is more commented to help to read the code**
 
 -----
 

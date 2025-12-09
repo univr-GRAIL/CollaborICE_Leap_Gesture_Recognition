@@ -6,6 +6,21 @@ from rclpy.node import Node
 import leap
 from leap import EventType, TrackingMode, HandType
 
+
+"""
+ROS 2 Leap Motion Data Publisher for [ScreenTop/Desktop] Mode.
+
+This script initializes a ROS 2 node to connect to a Leap Motion device,
+set the appropriate tracking mode, listen for hand tracking events,
+process the data, and publish it as a JSON string to a ROS 2 topic.
+
+Dependencies:
+- rclpy (ROS 2 Python client library)
+- leap-python (Leap Motion's Python SDK)
+- std_msgs (for String message type)
+"""
+
+
 # Standard ROS2 message types
 from std_msgs.msg import Header, String
 

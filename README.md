@@ -1,4 +1,4 @@
-# 🖐️ Leap Motion Gesture Recognition
+# Leap Motion Gesture Recognition
 
 A brief description of the project, focusing on **real-time hand gesture recognition** using Leap Motion sensors and the **Robot Operating System (ROS)** framework. The system processes 3D joint data from one or two Leap Motion devices to recognize various hand gestures.
 
@@ -54,7 +54,7 @@ ros2 run leap_gesture_recognition leap_gesture_recognition
 ros2 run leap_motion leap_motion
 ```
 
-### 🧑‍💻 ROS Nodes and Data Visualization
+###  ROS Nodes and Data Visualization
 
 The scripts containing the ROS nodes are located inside the **`ros_nodes`** folder.
 
@@ -70,7 +70,7 @@ ros2 topic echo /sensors/leapDesk/json
 ros2 topic echo /sensors/leapScreen/json
 ros2 topic echo /sensors/leapFusion/json
 ros2 topic echo /sensors/leapGest/json
-
+```
 ## Tracked Hand Joint Data
 The system tracks 3D positions for key hand joints, structured as follows:
 

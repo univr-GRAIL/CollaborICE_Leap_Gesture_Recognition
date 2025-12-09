@@ -92,18 +92,23 @@ This structure applies to both hands (`left_` and `right_`).
 
 
 ## Recognizable gestures
-Scrivi elenco 
+List of recognized gestures: [FIVE, OK, THUMB, NON_GESTURE]
 
 ## Add gestures and Train the model
+The necessary training assets and scripts are located inside the **`gesture_recognizer_creator`** folder.
 
-Dentro la cartella gesture_recognizer_creator, ci sono le reti gia addestrate (in \nets), dove sono state addestrate \data, diviso in \train e \test.
+Within this directory:
+* **Trained Networks** are saved in the **`nets`** sub-folder.
+* **Training Data** is located in the **`data`** sub-folder, which is further divided into **`train`** and **`test`** directories.
 
-### Add users
-Se si vogliono  aggiungere utanti, basta aggiungere la cartella con il numero crescente dell'utente con all'interno i .txt contenenti dalla registrazione dei dati. Devono avere il nome del gesto come nome del txt.
+### Add New Users
+To add new users, simply create a new folder within the **`data`** directory, using the next sequential user number as the folder name (e.g., `user4`). This folder must contain the recorded data as `.txt` files.
 
-### Add gestures
-Se si vogliono  aggiungere gesti, basta aggiungere il nome del gesto come nome del txt con i dati all'interno dela cartella utente.
+### Add New Gestures
+To add new gestures, record the data and save the `.txt` files inside the relevant user's folder. **The file name must be the exact name of the gesture.**
 
 ### Train and Test
-lanciare lo script gesture_recognizer_training. Testalo con gesture_recon_leap_working, le reti saranno salvate in \nets. Ogni volta salva una svm, lda, baysean.
+1.  Launch the **`gesture_recognizer_training`** script.
+2.  Test the training results with the **`gesture_recon_leap_working`** script.
 
+The trained networks will be saved in the **`nets`** sub-folder. The script saves a new classifier after each run, including **SVM**, **LDA**, and **Bayesian** models.

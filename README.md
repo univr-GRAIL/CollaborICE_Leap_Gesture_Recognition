@@ -55,8 +55,12 @@ To launch the core applications, use the following `ros2 run` commands:
 > *Verify these commands are correct based on the latest package names.*
 
 ```bash
-ros2 run leap_gesture_recognition leap_gesture_recognition
-ros2 run leap_motion leap_motion
+ros2 run leap_motion_screen leap_motion_screen
+ros2 run leap_motion_desktop leap_motion_desktop
+ros2 run leap_fusion_desk_top leap_fusion_desk_top
+ros2 run recognizer_leap recognizer_leap
+
+
 ```
 
 ###  ROS Nodes and Data Visualization

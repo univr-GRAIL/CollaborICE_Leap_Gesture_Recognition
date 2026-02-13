@@ -7,7 +7,7 @@ import json
 from lib_gest_recon_leap import create_data, preparing_frame,recognition_gesture_frame,net_loader
 
 NNname = "poselda.sav"
-net_path = 'gesture_recognizer/nets/'
+net_path = 'nets/'#gesture_recognizer_creator/
 static_model = net_loader(net_path, NNname)
 
 # === Main Recorder ===

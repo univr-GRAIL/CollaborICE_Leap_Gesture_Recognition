@@ -1,0 +1,6 @@
+source;share/leap_motion_desktop/hook/pythonpath.ps1
+source;share/leap_motion_desktop/hook/pythonpath.dsv
+source;share/leap_motion_desktop/hook/pythonpath.sh
+source;share/leap_motion_desktop/hook/ament_prefix_path.ps1
+source;share/leap_motion_desktop/hook/ament_prefix_path.dsv
+source;share/leap_motion_desktop/hook/ament_prefix_path.sh

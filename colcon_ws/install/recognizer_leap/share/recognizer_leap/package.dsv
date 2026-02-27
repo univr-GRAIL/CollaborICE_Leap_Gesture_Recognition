@@ -4,3 +4,6 @@ source;share/recognizer_leap/hook/pythonpath.sh
 source;share/recognizer_leap/hook/ament_prefix_path.ps1
 source;share/recognizer_leap/hook/ament_prefix_path.dsv
 source;share/recognizer_leap/hook/ament_prefix_path.sh
+source;../../build/recognizer_leap/share/recognizer_leap/hook/pythonpath_develop.ps1
+source;../../build/recognizer_leap/share/recognizer_leap/hook/pythonpath_develop.dsv
+source;../../build/recognizer_leap/share/recognizer_leap/hook/pythonpath_develop.sh

@@ -8,7 +8,9 @@ from std_msgs.msg import String
 
 import json
 
-from leap_recognition.lib_fusion import leap_recon_static
+#from leap_recognition.lib_fusion import leap_recon_static
+#
+from recognizer_leap.lib_recon import preparing_frame, recognition_gesture_frame, net_loader, separate_hands
 
 
 class LeapFusion(Node):
@@ -37,6 +39,17 @@ class LeapFusion(Node):
         # self.timer = self.create_timer(0.1, self.publish_joints)  # Timer for publishing data
 
         self.frame_counter = 0
+        NNname = "poselda.sav"
+        '''import os
+        elementi=os.listdir('colcon_ws/')
+        for e in elementi:
+            print(e)'''
+        #/home/jaka/Desktop/CollaborICE_Leap_Gesture_Recognition/colcon_ws/src/recognizer_leap/recognizer_leap
+        net_path = 'colcon_ws/src/recognizer_leap/recognizer_leap/nets/'
+        #net_path = 'nets/'
+
+        self.static_model = net_loader(net_path, NNname)
+
 
     def listener_callback_1(self, msg):
         new_data = msg.data
@@ -54,7 +67,10 @@ class LeapFusion(Node):
             return
         self.last_update_leap1 = this_time
         hands = data['hands']
+        #print(hands)
         left_hand, right_hand = separate_hands(hands)
+        #print(left_hand)
+        #print(right_hand)
         #self.hand_left_leap1 = left_hand
         #self.hand_right_leap1 = right_hand
         self.gest_recognizer('desk',left_hand, right_hand)
@@ -103,26 +119,30 @@ class LeapFusion(Node):
         # check time
         '''if (current_time - self.last_update_leap1 >= self.time_passed and
                 current_time - self.last_update_leap2 >= self.time_passed):
-            return'''
+            return
 
         left_hand_recon =[]
         right_hand_recon= []
         if left_hand:
-            left_hand_recon = leap_recon_static(left_hand)
+            left_hand_recon = leap_recon_static(left_hand)'''
+        
+        
         if right_hand:
-            right_hand_recon = leap_recon_static(right_hand)
+            #print(right_hand)
 
-        '''if left_hand_recon and right_hand_recon:  # both hand visible
-            hand_fused = fuse_both(hand1, hand2)
+            self.frame_counter += 1
 
-            return hand_fused'''
+            '''json_data = create_data(event, self.frame_counter)
+            parsed_data = json.loads(right_hand)'''
 
-        self.frame_counter += 1
+            jcd_frame = preparing_frame(right_hand)
+            this_recon = recognition_gesture_frame(self.static_model, jcd_frame)
+            #print(this_recon)
 
-
-
-        msg = self.create_frame(fused_left_hand, fused_right_hand, current_time)
-        self.send_recognition_data(msg)
+            #msg = self.create_frame(fused_left_hand, fused_right_hand, current_time)
+            msg = self.create_frame(this_recon, current_time)
+            #print(msg)
+            self.send_recognition_data(msg)
 
 
 
@@ -130,21 +150,33 @@ class LeapFusion(Node):
     def publish_joints(self):
         pass  # The listener handles publishing data
 
-    def create_frame(self, fused_left_hand, fused_right_hand, current_time):
-        hands_to_send = []
-        if fused_left_hand:
-            hands_to_send.append(fused_left_hand)
-        if fused_right_hand:
-            hands_to_send.append(fused_right_hand)
+    def create_frame2(self, this_recon, current_time):
         frame_data = {
             'frame_id': self.frame_counter,
             'timestamp': current_time,
-            'hands': hands_to_send
+            'recognition': this_recon
         }
-        print(frame_data)
+        #print(frame_data)
         json_output = json.dumps(frame_data)
 
         # Publish JSON
+        msg = String()
+        msg.data = json_output
+        return msg
+    
+    def create_frame(self, this_recon, current_time):
+        # Convert ndarray to list if this_recon is the culprit
+        if hasattr(this_recon, 'tolist'):
+            this_recon = this_recon.tolist()
+
+        frame_data = {
+            'frame_id': self.frame_counter,
+            'timestamp': current_time,
+            'recognition': this_recon
+        }
+        
+        json_output = json.dumps(frame_data)
+
         msg = String()
         msg.data = json_output
         return msg
@@ -168,7 +200,7 @@ class LeapFusion(Node):
 
     def send_recognition_data(self, msg):
         self.publisher_.publish(msg)
-        print('Published gesture recognition data')
+        #print('Published gesture recognition data')
 
 
 def main(args=None):

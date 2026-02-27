@@ -30,6 +30,7 @@ To make your Leap Motion device accessible within your WSL environment, you need
 4.  Bind the USB device for use in WSL. **Replace `4-4` with the correct Bus ID** you identified in the previous step:
     ```powershell
     usbipd bind --busid 4-4
+    usbipd attach --wsl --busid 4-4
     ```
 
 ---
@@ -55,13 +56,13 @@ To launch the core applications, use the following `ros2 run` commands:
 > *Verify these commands are correct based on the latest package names.*
 
 ```bash
-ros2 run leap_gesture_recognition leap_gesture_recognition
-ros2 run leap_motion leap_motion
+ros2 run leap_motion_desktop leap_motion_desktop
+ros2 run recognizer_leap recognizer_leap
 ```
 
 ###  ROS Nodes and Data Visualization
 
-The scripts containing the ROS nodes are located inside the **`ros_nodes`** folder.
+The scripts containing the ROS nodes are located inside the **`colcon_ws/src`** folder.
 
 | Script | Node Functionality | Topic to Echo |
 | :--- | :--- | :--- |
